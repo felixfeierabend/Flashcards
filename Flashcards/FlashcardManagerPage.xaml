@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Flashcards.FlashcardManagerPage"
+             Title="Flashcard Manager">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label Text="Front (Question / LaTeX supported):" FontAttributes="Bold" 
+                   TextColor="{AppThemeBinding Light={StaticResource TextLight}, Dark={StaticResource TextDark}}"/>
+            <Editor x:Name="editorFront" 
+                    Placeholder="Enter text or LaTeX e.g. $\frac{1}{2}$" 
+                    HeightRequest="100" 
+                    AutoSize="TextChanges"/>
+
+            <Button x:Name="buttonAddImageFront" 
+                    Text="Add Image to Front" 
+                    Clicked="ButtonAddImage_Clicked" />
+
+            <Image x:Name="imageFrontPreview" HeightRequest="150" IsVisible="False" />
+
+            <BoxView HeightRequest="1" Color="Gray" Margin="0,10" />
+
+            <Label Text="Back (Answer / LaTeX supported):" FontAttributes="Bold" 
+                   TextColor="{AppThemeBinding Light={StaticResource TextLight}, Dark={StaticResource TextDark}}"/>
+            <Editor x:Name="editorBack" 
+                    Placeholder="Enter answer..." 
+                    HeightRequest="100" 
+                    AutoSize="TextChanges"/>
+
+            <Button x:Name="buttonAddImageBack" 
+                    Text="Add Image to Back" 
+                    Clicked="ButtonAddImage_Clicked" />
+
+            <Image x:Name="imageBackPreview" HeightRequest="150" IsVisible="False" />
+
+            <BoxView HeightRequest="1" Color="Gray" Margin="0,10" />
+
+            <Label Text="Live Preview:" FontAttributes="Bold" 
+                   TextColor="{AppThemeBinding Light={StaticResource TextLight}, Dark={StaticResource TextDark}}"/>
+            <WebView x:Name="webViewLatexPreview" HeightRequest="150" />
+            <Button x:Name="buttonRefreshPreview" Text="Refresh Preview" Clicked="ButtonRefreshPreview_Clicked" />
+
+            <Button x:Name="buttonSave" 
+                    Text="Save Card" 
+                    Clicked="ButtonSave_Clicked"
+                    BackgroundColor="{StaticResource PrimaryColor}" 
+                    TextColor="White"
+                    Margin="0,20,0,0"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

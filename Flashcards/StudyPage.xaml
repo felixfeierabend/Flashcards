@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Flashcards.StudyPage"
+             Title="Study Deck"
+             BackgroundColor="{AppThemeBinding Light={StaticResource BgLight}, Dark={StaticResource BgDark}}">
+
+    <Grid RowDefinitions="Auto, *, Auto" Padding="20">
+
+        <Label x:Name="labelProgress" 
+               Grid.Row="0" 
+               Text="Card 1 / 20" 
+               HorizontalOptions="Center" 
+               FontAttributes="Bold"
+               TextColor="{AppThemeBinding Light={StaticResource TextLight}, Dark={StaticResource TextDark}}" />
+
+        <Frame x:Name="frameFlashcard" 
+               Grid.Row="1" 
+               Margin="20" 
+               Padding="15" 
+               CornerRadius="15" 
+               HasShadow="True"
+               BackgroundColor="{AppThemeBinding Light=#F9F9F9, Dark=#1E1E1E}">
+
+            <Grid RowDefinitions="Auto, *">
+                <Image x:Name="imageCard" 
+                       Grid.Row="0" 
+                       HeightRequest="150" 
+                       IsVisible="False" 
+                       Margin="0,0,0,15"/>
+
+                <WebView x:Name="webViewCardContent" 
+                         Grid.Row="1" 
+                         VerticalOptions="FillAndExpand" />
+            </Grid>
+        </Frame>
+
+        <Grid Grid.Row="2" ColumnDefinitions="*, *, *" ColumnSpacing="15" Margin="0,20,0,0">
+
+            <Button x:Name="buttonPrevious" 
+                    Grid.Column="0" 
+                    Text="Previous" 
+                    Clicked="ButtonPrevious_Clicked"
+                    BackgroundColor="#888888" 
+                    TextColor="White"/>
+
+            <Button x:Name="buttonFlip" 
+                    Grid.Column="1" 
+                    Text="Flip Card" 
+                    Clicked="ButtonFlip_Clicked"
+                    BackgroundColor="{StaticResource PrimaryColor}" 
+                    TextColor="White"
+                    FontAttributes="Bold"/>
+
+            <Button x:Name="buttonNext" 
+                    Grid.Column="2" 
+                    Text="Next" 
+                    Clicked="ButtonNext_Clicked"
+                    BackgroundColor="#888888" 
+                    TextColor="White"/>
+        </Grid>
+
+    </Grid>
+</ContentPage>
