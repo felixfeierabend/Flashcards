@@ -11,7 +11,8 @@
             <Editor x:Name="editorFront" 
                     Placeholder="Enter text or LaTeX e.g. $\frac{1}{2}$" 
                     HeightRequest="100" 
-                    AutoSize="TextChanges"/>
+                    AutoSize="TextChanges"
+                    TextChanged="editorFront_TextChanged"/>
 
             <Button x:Name="buttonAddImageFront" 
                     Text="Add Image" 
@@ -26,7 +27,8 @@
             <Editor x:Name="editorBack" 
                     Placeholder="Enter answer..." 
                     HeightRequest="100" 
-                    AutoSize="TextChanges"/>
+                    AutoSize="TextChanges"
+                    TextChanged="editorBack_TextChanged"/>
 
             <Button x:Name="buttonAddImageBack" 
                     Text="Add Image" 

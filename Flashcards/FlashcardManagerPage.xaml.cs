@@ -171,6 +171,16 @@ public partial class FlashcardManagerPage : ContentPage
             RefreshPreview();
         }
     }
+
+    private void editorFront_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        RefreshPreview();
+    }
+
+    private void editorBack_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        RefreshPreview();
+    }
 }
 
 public class FlashcardEventArgs
