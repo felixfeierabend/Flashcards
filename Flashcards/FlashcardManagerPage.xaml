@@ -14,8 +14,8 @@
                     AutoSize="TextChanges"/>
 
             <Button x:Name="buttonAddImageFront" 
-                    Text="Add Image to Front" 
-                    Clicked="ButtonAddImage_Clicked" />
+                    Text="Add Image" 
+                    Clicked="ButtonAddImageFront_Clicked" />            
 
             <Image x:Name="imageFrontPreview" HeightRequest="150" IsVisible="False" />
 
@@ -29,8 +29,8 @@
                     AutoSize="TextChanges"/>
 
             <Button x:Name="buttonAddImageBack" 
-                    Text="Add Image to Back" 
-                    Clicked="ButtonAddImage_Clicked" />
+                    Text="Add Image" 
+                    Clicked="buttonAddImageBack_Clicked" />
 
             <Image x:Name="imageBackPreview" HeightRequest="150" IsVisible="False" />
 
@@ -42,7 +42,7 @@
             <Button x:Name="buttonRefreshPreview" Text="Refresh Preview" Clicked="ButtonRefreshPreview_Clicked" />
 
             <Button x:Name="buttonSave" 
-                    Text="Save Card" 
+                    Text="Add Card" 
                     Clicked="ButtonSave_Clicked"
                     BackgroundColor="{StaticResource PrimaryColor}" 
                     TextColor="White"

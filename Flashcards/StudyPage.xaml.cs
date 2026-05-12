@@ -14,6 +14,7 @@ public partial class StudyPage : ContentPage
 		InitializeComponent();
         Flashcards = new List<Flashcard>(flashcards);
         TotalCards = Flashcards.Count;
+        LoadCurrentCard();
 	}
 
     private void LoadCurrentCard()
@@ -27,9 +28,14 @@ public partial class StudyPage : ContentPage
     private void UpdateCardView()
     {
         string textContent = IsShowingFront ? Flashcards[CurrentIndex].Question : Flashcards[CurrentIndex].Solution;
-        if (Flashcards[CurrentIndex].Image != null)
+        if (Flashcards[CurrentIndex].ImageFront != null && IsShowingFront)
         {
-            imageCard.Source = ImageSource.FromStream(() => new MemoryStream(Flashcards[CurrentIndex].Image));
+            imageCard.Source = ImageSource.FromStream(() => new MemoryStream(Flashcards[CurrentIndex].ImageFront));
+            imageCard.IsVisible = true;
+        }
+        else if (Flashcards[CurrentIndex].ImageBack != null && !IsShowingFront)
+        {
+            imageCard.Source = ImageSource.FromStream(() => new MemoryStream(Flashcards[CurrentIndex].ImageBack));
             imageCard.IsVisible = true;
         }
         else

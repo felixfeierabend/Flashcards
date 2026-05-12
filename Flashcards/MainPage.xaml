@@ -20,21 +20,35 @@
         </HorizontalStackLayout>
 
         <CollectionView x:Name="collectionViewCards" Grid.Row="1" Margin="0,20,0,0">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                                   ItemSpacing="12"/>
+            </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame Margin="0,5" Padding="15" CornerRadius="8" 
+                    <Border Margin="0,0,0,12" Padding="15" StrokeThickness="0" StrokeShape="RoundRectangle 12"
                            BackgroundColor="{AppThemeBinding Light=#F0F0F0, Dark=#1E1E1E}">
-                        <Grid ColumnDefinitions="*, Auto">
+                        <Grid ColumnDefinitions="*, Auto, Auto"
+                              ColumnSpacing="10">
                             <Label Text="{Binding Question}" 
                                    TextColor="{AppThemeBinding Light={StaticResource TextLight}, Dark={StaticResource TextDark}}"
                                    VerticalOptions="Center" />
                             <Button x:Name="buttonEditCard" 
                                     Grid.Column="1" 
+                                    Padding="12,6"
                                     Text="Edit" 
                                     CommandParameter="{Binding .}"
                                     Clicked="ButtonEditCard_Clicked" />
+                            <Button x:Name="buttonDelete"
+                                    Grid.Column="2"
+                                    Text="Delete"
+                                    Padding="12,6"
+                                    TextColor="White"
+                                    CommandParameter="{Binding .}"
+                                    BackgroundColor="DarkRed"
+                                    Clicked="buttonDelete_Clicked"/>
                         </Grid>
-                    </Frame>
+                    </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
@@ -53,6 +67,14 @@
             <Button x:Name="buttonAddNewCard" 
             Text="Add New Card" 
             Clicked="ButtonAddNewCard_Clicked"
+            BackgroundColor="Transparent" 
+            BorderColor="{StaticResource PrimaryColor}"
+            BorderWidth="1"
+            TextColor="{AppThemeBinding Light={StaticResource TextLight}, Dark={StaticResource TextDark}}"/>
+
+            <Button x:Name="buttonSave" 
+            Text="Save" 
+            Clicked="ButtonSave_Clicked"
             BackgroundColor="Transparent" 
             BorderColor="{StaticResource PrimaryColor}"
             BorderWidth="1"

@@ -11,14 +11,16 @@ namespace Flashcards
         public string Question { get; set; }
         public string Solution { get; set; }
         public int Difficulty { get; set; }
-        public byte[] Image { get; set; }
+        public byte[] ImageFront { get; set; }
+        public byte[] ImageBack { get; set; }
 
-        public Flashcard(string question, string solution, int difficulty = 5, byte[] image = null)
+        public Flashcard(string question, string solution, int difficulty = 5, byte[] imageFront = null, byte[] imageBack = null)
         {
             Question = question;
             Solution = solution;
             Difficulty = difficulty;
-            Image = image;
+            ImageFront = imageFront;
+            ImageBack = imageBack;
         }
         
         private int CalculateLevenshteinDistance(string s1, string s2)
