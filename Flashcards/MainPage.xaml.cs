@@ -101,6 +101,11 @@ namespace Flashcards
 
             this.Flashcards.Add(args._Flashcard);
             collectionViewCards.ItemsSource = this.Flashcards;
+
+            if (!string.IsNullOrEmpty(Path))
+            {
+                Save();
+            }
         }
 
         private async void ButtonStartStudy_Clicked(object sender, EventArgs e)
@@ -115,16 +120,21 @@ namespace Flashcards
         {
             if (Flashcards.Count > 0)
             {
-                string json = JsonSerializer.Serialize(Flashcards);
+                Save();
+            }
+        }
 
-                if (string.IsNullOrEmpty(Path))
-                {
-                    var result = await FileSaver.Default.SaveAsync("flashcards.json", new MemoryStream(Encoding.UTF8.GetBytes(json)));
-                }
-                else
-                {
-                    File.WriteAllText(Path.EndsWith(".json") ? Path : $"{Path}.json", json);
-                }
+        private async void Save()
+        {
+            string json = JsonSerializer.Serialize(Flashcards);
+
+            if (string.IsNullOrEmpty(Path))
+            {
+                var result = await FileSaver.Default.SaveAsync("flashcards.json", new MemoryStream(Encoding.UTF8.GetBytes(json)));
+            }
+            else
+            {
+                File.WriteAllText(Path.EndsWith(".json") ? Path : $"{Path}.json", json);
             }
         }
 

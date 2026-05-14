@@ -17,8 +17,8 @@ public partial class FlashcardManagerPage : ContentPage
 
         if (flashcard != null)
         {
-            this.ImgFront = ImageSource.FromStream(() => new MemoryStream(flashcard.ImageFront));
-            this.ImgBack = ImageSource.FromStream(() => new MemoryStream(flashcard.ImageBack));
+            this.ImgFront = flashcard.ImageFront != null ? ImageSource.FromStream(() => new MemoryStream(flashcard.ImageFront)) : null;
+            this.ImgBack = flashcard.ImageBack != null ? ImageSource.FromStream(() => new MemoryStream(flashcard.ImageBack)) : null;
             this.ImgDataFront = flashcard.ImageFront;
             this.ImgDataBack = flashcard.ImageBack;
             this.editorFront.Text = flashcard.Question;
