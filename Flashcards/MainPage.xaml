@@ -80,6 +80,14 @@
             BorderWidth="1"
             TextColor="{AppThemeBinding Light={StaticResource TextLight}, Dark={StaticResource TextDark}}"/>
 
+            <Button x:Name="buttonExport" 
+            Text="Export to markdown" 
+            Clicked="buttonExport_Clicked"
+            BackgroundColor="Transparent" 
+            BorderColor="{StaticResource PrimaryColor}"
+            BorderWidth="1"
+            TextColor="{AppThemeBinding Light={StaticResource TextLight}, Dark={StaticResource TextDark}}"/>
+
         </VerticalStackLayout>
     </Grid>
 

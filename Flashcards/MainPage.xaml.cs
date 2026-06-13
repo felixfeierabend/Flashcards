@@ -1,14 +1,15 @@
-﻿using System.Collections.ObjectModel;
+﻿using CommunityToolkit.Maui.Storage;
+using System.Collections.ObjectModel;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Text.Json;
-using CommunityToolkit.Maui.Storage;
 
 namespace Flashcards
 {
     public partial class MainPage : ContentPage
     {
         private string Path = string.Empty;
+        private const string RepoUrl = @"https://github.com/felixfeierabend/Flashcards";
 
         public ObservableCollection<Flashcard> Flashcards { get; set; } = new();
 
@@ -144,6 +145,40 @@ namespace Flashcards
             {
                 Flashcards.Remove(selectedFlashcard);
             }
+        }
+
+        private async void buttonExport_Clicked(object sender, EventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();            
+
+            foreach (Flashcard f in Flashcards)
+            {
+                sb.Append("\n #### ");
+                sb.Append(f.Question.Replace("<br>", "\n").Replace(@"\[", "$$").Replace(@"\]", "$$"));
+                sb.Append("\n");
+
+                if (f.ImageFront != null)
+                {
+                    sb.Append($"![](data:image/png;base64,{Convert.ToBase64String(f.ImageFront)})");
+                    sb.Append("\n");
+                }
+
+                sb.Append("\n");
+                sb.Append(f.Solution.Replace("<br>", "\n").Replace(@"\[", "$$").Replace(@"\]", "$$"));
+                sb.Append("\n\n");
+                if (f.ImageBack != null)
+                {
+                    sb.Append($"![](data:image/png;base64,{Convert.ToBase64String(f.ImageBack)})");
+                    sb.Append("\n");
+                }
+                sb.Append("\n\n --- \n");
+            }
+
+            sb.Append($"> *Exported from [Flashcards]({RepoUrl}) on ");
+            sb.Append(DateTime.Now.ToShortDateString());
+            sb.Append(", (c) Felix Feierabend*");
+
+            var result = await FileSaver.Default.SaveAsync("flashcards.md", new MemoryStream(Encoding.UTF8.GetBytes(sb.ToString())));
         }
     }
 }
